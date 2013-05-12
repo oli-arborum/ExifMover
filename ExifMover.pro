@@ -17,4 +17,9 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
+TRANSLATIONS = ExifMover-de_DE.ts
+
 unix:!symbian|win32: LIBS += -lexif
+
+OTHER_FILES += \
+    ExifMover-de_DE.ts

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMap>
 
 class QSettings;
 
@@ -24,9 +25,14 @@ private slots:
 
     void on_actionClearList_triggered();
 
+    void on_actionMoveFiles_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSettings *m_settings;
+
+    typedef QMap<QString, struct tm> t_fileTimeMap;
+    t_fileTimeMap m_fileTimeMap;
 };
 
 #endif // MAINWINDOW_H
