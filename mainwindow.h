@@ -20,7 +20,9 @@ public:
 private slots:
     void on_pbSelectDir_clicked();
 
-    void on_actionTest_triggered();
+    void on_actionReadDir_triggered();
+
+    void on_actionClearList_triggered();
 
 private:
     Ui::MainWindow *ui;

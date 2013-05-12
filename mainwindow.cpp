@@ -30,11 +30,13 @@ void MainWindow::on_pbSelectDir_clicked()
                                                      // "/home",
                                                      // QFileDialog::ShowDirsOnly
                                                      // | QFileDialog::DontResolveSymlinks);
-    ui->leDirName->setText( dir );
-    m_settings->setValue( "directory", dir );
+    if( !dir.isEmpty() ) {
+        ui->leDirName->setText( dir );
+        m_settings->setValue( "directory", dir );
+    }
 }
 
-void MainWindow::on_actionTest_triggered()
+void MainWindow::on_actionReadDir_triggered()
 {
     QDir *dir = new QDir( ui->leDirName->text() );
     QStringList filters;
@@ -45,6 +47,8 @@ void MainWindow::on_actionTest_triggered()
     QStringList headers;
     headers << tr("File name") << tr("EXIF date");
 
+    // prepare tableWidget...
+    ui->tableWidget->clear();
     ui->tableWidget->setRowCount( dir->count() );
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setHorizontalHeaderLabels( headers );
@@ -67,7 +71,7 @@ void MainWindow::on_actionTest_triggered()
             exif_entry_get_value(exif_time, buf, 1024);
             struct tm tm;
             if( strptime(buf, "%Y:%m:%d %H:%M:%S", &tm) == NULL ) {
-               fileDate = "parse error!";
+                fileDate = "parse error!";
             } else {
                 fileDate = buf;
             }
@@ -80,4 +84,11 @@ void MainWindow::on_actionTest_triggered()
         /////
     }
     delete dir;
+}
+
+void MainWindow::on_actionClearList_triggered()
+{
+    ui->tableWidget->clear();
+    ui->tableWidget->setColumnCount(0);
+    ui->tableWidget->setRowCount(0);
 }
