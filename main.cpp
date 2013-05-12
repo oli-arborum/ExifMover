@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     // QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
     QTranslator translator;
     if( !translator.load(QString("ExifMover-") + locale) ) {
-        qDebug << "failed to load translation! locale=" << locale;
+        qDebug() << "failed to load translation! locale=" << locale;
     }
     a.installTranslator(&translator);
 
