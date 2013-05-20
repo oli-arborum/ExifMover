@@ -118,7 +118,10 @@ void MainWindow::on_actionMoveFiles_triggered()
         if( !QDir(dstFolderName).exists() ) {
             QDir().mkdir(dstFolderName);
         }
-        if( QDir().rename( srcFolderName + it.key(), dstFolderName + it.key() ) ) {
+        if( QFile::exists(dstFolderName + it.key()) ) {
+            qDebug() << "destination file " << dstFolderName << it.key() << " already exists, skipping...";
+            ++countError;
+        } else if( QDir().rename( srcFolderName + it.key(), dstFolderName + it.key() ) ) {
             ++countSuccess;
         } else {
             qDebug() << "error moving " << it.key() << " to " << dstFolderName;
