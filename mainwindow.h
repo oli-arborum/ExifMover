@@ -5,6 +5,7 @@
 #include <QMap>
 
 class QSettings;
+class QTableWidgetItem;
 
 namespace Ui {
     class MainWindow;
@@ -33,6 +34,9 @@ private:
 
     typedef QMap<QString, struct tm> t_fileTimeMap;
     t_fileTimeMap m_fileTimeMap;
+
+    typedef QMap<QString, QTableWidgetItem*> t_fileStatusMap;
+    t_fileStatusMap m_fileStatusMap;
 };
 
 #endif // MAINWINDOW_H

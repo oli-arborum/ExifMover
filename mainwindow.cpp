@@ -88,8 +88,10 @@ void MainWindow::on_actionReadDir_triggered()
         QTableWidgetItem *itemStatus = new QTableWidgetItem( tr("new") );
         itemStatus->setFlags( Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
         ui->tableWidget->setItem( i, 2, itemStatus );
+        m_fileStatusMap.insert( fil.at(i).fileName(), itemStatus );
     }
     delete dir;
+    ui->tableWidget->resizeColumnsToContents();
 }
 
 void MainWindow::on_actionClearList_triggered()
@@ -121,11 +123,17 @@ void MainWindow::on_actionMoveFiles_triggered()
         if( QFile::exists(dstFolderName + it.key()) ) {
             qDebug() << "destination file " << dstFolderName << it.key() << " already exists, skipping...";
             ++countError;
+            m_fileStatusMap.value(it.key())->setText(tr("exists"));
+            m_fileStatusMap.value(it.key())->setBackgroundColor(QColor(255,255,0));
         } else if( QDir().rename( srcFolderName + it.key(), dstFolderName + it.key() ) ) {
             ++countSuccess;
+            m_fileStatusMap.value(it.key())->setText(tr("ok"));
+            m_fileStatusMap.value(it.key())->setBackgroundColor(QColor(0,255,0));
         } else {
             qDebug() << "error moving " << it.key() << " to " << dstFolderName;
             ++countError;
+            m_fileStatusMap.value(it.key())->setText(tr("error"));
+            m_fileStatusMap.value(it.key())->setBackgroundColor(QColor(255,0,0));
         }
     }
     if( countError ) {
