@@ -74,14 +74,29 @@
         <translation type="unfinished">neu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="126"/>
+        <source>exists</source>
+        <translation type="unfinished">existiert</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="130"/>
+        <source>ok</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="135"/>
+        <source>error</source>
+        <translation type="unfinished">Fehler</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="140"/>
         <source>Error while moving %1 files.
 %2 files were moved successfully!</source>
         <translation type="unfinished">Fehler beim verschieben von %1 Datei(en).
 %2 Dateien wurden erfolgreich verschoben!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>%1 files were moved successfully!</source>
         <translation type="unfinished">%1 Dateien wurden erfolgreich verschoben!</translation>
     </message>
